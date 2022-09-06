@@ -1,6 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
-from .forms import PostMovieForm
+from .forms import PostMovieForm, UpdateMovieForm
 from .models import Movie
 
 
@@ -22,5 +22,5 @@ class AddMovieView(CreateView):
 
 class UpdateMovieView(UpdateView):
     model = Movie
+    form_class = UpdateMovieForm
     template_name = 'update_movie.html'
-    fields = 'title', 'description'
