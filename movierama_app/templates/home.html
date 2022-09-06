@@ -9,7 +9,7 @@
     <li><a href=" {% url 'movie-detail' movie.pk %}"> {{ movie.title }}</a>
         {{ movie.user.username }}
         {{ movie.user.email }}
-        {{ movie.timestamp }}
+        {{ movie.timestamp }} - <small><a href="{% url 'update_movie' movie.pk %}">Edit<a/> </small><br/>
     </li>
     {% endfor%}
 

@@ -1,8 +1,6 @@
-from datetime import datetime
-from urllib import request
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
-from django.views.generic import ListView, DetailView, CreateView
-
+from .forms import PostMovieForm
 from .models import Movie
 
 
@@ -18,5 +16,11 @@ class MovieDetailView(DetailView):
 
 class AddMovieView(CreateView):
     model = Movie
+    form_class = PostMovieForm
     template_name = 'add_movie.html'
-    fields = 'title', 'description', 'user'
+
+
+class UpdateMovieView(UpdateView):
+    model = Movie
+    template_name = 'update_movie.html'
+    fields = 'title', 'description'
