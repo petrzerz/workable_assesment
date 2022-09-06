@@ -11,7 +11,7 @@ class Movie(models.Model):
     n_hates = models.PositiveIntegerField()
 
     def __str__(self):
-        return 'title:{}, user:{}, timestamp:{}'.format(self.name, self.user.username, self.timestamp)
+        return 'title:{}, user:{}, timestamp:{}'.format(self.title, self.user.username, self.timestamp)
 
     class Meta:
         ordering = ['timestamp']
