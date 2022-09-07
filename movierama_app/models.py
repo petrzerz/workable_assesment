@@ -15,7 +15,6 @@ class Movie(models.Model):
         return 'title:{}, user:{}, timestamp:{}'.format(self.title, self.user.username, self.timestamp)
 
     def get_absolute_url(self):
-        # return reverse('movie-detail', args=(str(self.id)))
         return reverse('home')
 
     class Meta:

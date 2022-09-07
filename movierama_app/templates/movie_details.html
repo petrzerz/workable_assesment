@@ -4,7 +4,9 @@
 
 <h1>{{ movie.title }}</h1>
 <small> By: {{ movie.user.username }}
-    {{ movie.user.email }} <a href="{% url 'update_movie' movie.pk %}">Edit<a/> <small/><br/>
+    {{ movie.user.email }} <a href="{% url 'update_movie' movie.pk %}">Edit<a/>
+        <a href="{% url 'delete_movie' movie.pk %}">Delete<a/>
+            <small/><br/>
 <hr>
 <br/>
 {{movie.description}}

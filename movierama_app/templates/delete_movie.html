@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} Delete Movie Post {% endblock %}
+
+{% block content %}
+
+<h1>Delete Movie </h1>
+<br/><br/>
+<h3>You are going to delete {{ movie.title }} </h3>
+
+<br/>
+<div class='form-group'>
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form.as_p}}
+        <strong>Are you sure?</strong><br/><br/>
+        <button class='btn btn-secondary'>Delete movie</button>
+</div>
+
+
+{% endblock %}

@@ -9,7 +9,11 @@
     <li><a href=" {% url 'movie-detail' movie.pk %}"> {{ movie.title }}</a>
         {{ movie.user.username }}
         {{ movie.user.email }}
-        {{ movie.timestamp }} - <small><a href="{% url 'update_movie' movie.pk %}">Edit<a/> </small><br/>
+        {{ movie.timestamp }} - <small>
+            <a href="{% url 'update_movie' movie.pk %}">Edit<a/> -
+                <a href="{% url 'delete_movie' movie.pk %}">Delete<a/>
+
+        </small><br/>
     </li>
     {% endfor%}
 
