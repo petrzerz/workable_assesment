@@ -29,6 +29,7 @@ class UpdateMovieView(UpdateView):
 
 
 class DeleteMovieView(DeleteView):
+    # permission_classes = (IsAuthenticated,)
     model = Movie
     template_name = 'delete_movie.html'
     success_url = reverse_lazy('home')
