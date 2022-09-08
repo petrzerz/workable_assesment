@@ -33,3 +33,16 @@ class DeleteMovieView(DeleteView):
     model = Movie
     template_name = 'delete_movie.html'
     success_url = reverse_lazy('home')
+
+
+# class CategoryListView(ListView):
+#     model = Category
+#     template_name = 'category_list.html'
+#
+#     def get_queryset(self, **kwargs):
+#        qs = super().get_queryset(**kwargs)
+#        return qs.filter(brand_id=self.kwargs['pk'])
+#
+# And the url should look like this:
+#
+# path('category/<int:pk>/', CategoryListView.as_view())

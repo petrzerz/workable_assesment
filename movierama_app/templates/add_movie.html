@@ -2,6 +2,7 @@
 {% block title %} Add a new movie {% endblock %}
 
 {% block content %}
+{% if user.is_authenticated %}
 
 <h1>Add new movie</h1>
 <br/><br/>
@@ -12,5 +13,9 @@
         <button class='btn btn-secondary'>Add</button>
 </div>
 
+{% else %}
+
+You are not allowed here
+{% endif %}
 
 {% endblock %}
