@@ -23,15 +23,20 @@ class MovieDetailView(DetailView):
 
         total_likes = stuff.total_likes()
         liked = False
-        if stuff.likes.filter(id=self.request.user.id).exists():
-            liked = True
-        context['total_likes'] = total_likes
-        context['liked'] = liked
 
         total_hates = stuff.total_hates()
         hated = False
-        if stuff.hates.filter(id=self.request.user.id).exists():
+
+        if stuff.likes.filter(id=self.request.user.id).exists():
+            liked = True
+            hated = False
+        elif stuff.hates.filter(id=self.request.user.id).exists():
             hated = True
+            liked = False
+
+        context['total_likes'] = total_likes
+        context['liked'] = liked
+
         context['total_hates'] = total_hates
         context['hated'] = hated
         return context
@@ -78,6 +83,9 @@ def LikeView(request, pk):
     else:
         movie.likes.add(request.user)
         liked = True
+        movie.hates.remove(request.user)
+        hated = False
+
     return HttpResponseRedirect(reverse('movie-detail', args=[str(pk)]))
 
 
@@ -90,4 +98,6 @@ def HateView(request, pk):
     else:
         movie.hates.add(request.user)
         hated = True
+        movie.likes.remove(request.user)
+        liked = False
     return HttpResponseRedirect(reverse('movie-detail', args=[str(pk)]))
