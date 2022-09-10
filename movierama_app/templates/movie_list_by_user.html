@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} movierama {{ movie.title }} {% endblock %}
+{% block content %}
+
+Movies by:
+<h1>{{ object_list.first.user.username }}</h1>
+<small>
+{% for movie in object_list %}
+{{ movie.user.username }}
+        {{ movie.user.email }}
+        {{ movie.timestamp }}            <br/>
+<hr>
+<br/>
+{{movie.description}} <br/>
+            {% endfor %}
+    <small/>
+<br/><br/>
+<a href="{% url 'home' %}" class='btn btn-secondary'>Back</a>
+
+{% endblock %}
