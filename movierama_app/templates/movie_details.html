@@ -20,7 +20,7 @@
             <br/><br/>
             <hr>
             <br/>
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and movie.user.id != user.id%}
             <form action="{% url 'like_movie' movie.pk%}" method="POST">
                 {% csrf_token %}
                 {% if liked %}
