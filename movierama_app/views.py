@@ -12,6 +12,21 @@ class HomeView(ListView):
     template_name = 'home.html'
     ordering = ['-timestamp']
 
+    def get_queryset(self, **kwargs):
+        queryset = super().get_queryset(**kwargs)
+        timestamp = self.request.GET.get('order_by')
+        likes = self.request.GET.get('order_by')
+        hates = self.request.GET.get('order_by')
+
+        if timestamp is not None:
+            queryset = queryset.order_by('-timestamp')
+        # if likes is not None:
+        #     queryset = queryset.order_by('likes.all().count')
+        # if hates is not None:
+        #     queryset = queryset.order_by('likes.all().count')
+
+        return queryset
+
 
 class MovieDetailView(DetailView):
     model = Movie
@@ -19,6 +34,7 @@ class MovieDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(MovieDetailView, self).get_context_data()
+        print(context)
         stuff = get_object_or_404(Movie, id=self.kwargs['pk'])
 
         total_likes = stuff.total_likes()
@@ -59,7 +75,6 @@ class UpdateMovieView(UpdateView):
 
 
 class DeleteMovieView(DeleteView):
-    # permission_classes = (IsAuthenticated,)
     model = Movie
     template_name = 'delete_movie.html'
     success_url = reverse_lazy('home')
