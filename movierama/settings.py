@@ -69,6 +69,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'movierama.wsgi.application'
 
+ASGI_APPLICATION = 'movierama_app.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', '6379')],
+        },
+    },
+}
+
+if os.getenv('DOCKER_CONTAINER') == "1":
+    POSTGRES_HOST = 'db'
+else:
+    POSTGRES_HOST = '127.0.0.1'
+
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 DATABASES = {

@@ -12,6 +12,6 @@ urlpatterns = [
     path('user_movie/<int:pk>/', MovieListByUserView.as_view(), name='movie_list_by_user'),
     path('like/<int:pk>', LikeView, name='like_movie'),
     path('hate/<int:pk>', HateView, name='hate_movie'),
-    # re_path(r'^movie_order/(?P<order_by>[\w/@+-])/$', HomeView.as_view(), name='movie_order'),
+    path('movie_order/', HomeView.as_view(), name='movie_order'),
 
 ]
