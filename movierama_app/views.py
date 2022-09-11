@@ -34,7 +34,6 @@ class MovieDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(MovieDetailView, self).get_context_data()
-        print(context)
         stuff = get_object_or_404(Movie, id=self.kwargs['pk'])
 
         total_likes = stuff.total_likes()
