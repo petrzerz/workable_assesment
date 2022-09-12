@@ -97,7 +97,7 @@ DATABASES = {
         'NAME': 'movierama',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'db',
+        'HOST': POSTGRES_HOST,
         'PORT': '5432',
     }
 }

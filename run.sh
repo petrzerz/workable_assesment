@@ -1,5 +1,6 @@
 #!/bin/bash
-yes | python3 manage.py makemigrations movierama_app && yes | python3 manage.py migrate &
+yes | python3 manage.py makemigrations movierama_app && yes | python3 manage.py migrate | python3 movierama_init.py &
+
 status=$?
 if [ $status -ne 0 ]; then
   echo "Failed to start migrations and user creation: $status"
@@ -13,4 +14,3 @@ if [ $status -ne 0 ]; then
   echo "Failed to start API server: $status"
   exit $status
 fi
-
