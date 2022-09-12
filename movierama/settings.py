@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'restcrudswagger.apps.RestcrudswaggerConfig',
+    # required for serving swagger ui's css/js files
+    'drf_yasg',
     'movierama_app',
     'members'
 ]
@@ -48,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'}
 
 ROOT_URLCONF = 'movierama.urls'
 
@@ -92,8 +97,8 @@ DATABASES = {
         'NAME': 'movierama',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': os.getenv('POSTGRES_HOST', '127.0.0.1'),
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 

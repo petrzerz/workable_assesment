@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 yes | python3 manage.py makemigrations movierama_app && yes | python3 manage.py migrate &
 status=$?
 if [ $status -ne 0 ]; then
