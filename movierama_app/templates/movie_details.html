@@ -4,21 +4,18 @@
 
 <h1>{{ movie.title }}</h1>
 <small> By: {{ movie.user.username }}
-    {{ movie.user.email }}
-    {% if user.is_authenticated %}
+    Submitted at: {{ movie.timestamp }}
+    {% if user.is_authenticated and movie.user.id == user.id %}
          <a href="{% url 'update_movie' movie.pk %}">Edit<a/>
              <a href="{% url 'delete_movie' movie.pk %}">Delete<a/>
             {% endif %}
                  <small/><br/>
-            <hr>
             <br/>
-            {{movie.description}}
-
+             Description: {{movie.description}}
+            <hr>
             <br/><br/>
             <a href="{% url 'home' %}" class='btn btn-secondary'>Back</a>
-
             <br/><br/>
-            <hr>
             <br/>
             {% if user.is_authenticated and movie.user.id != user.id%}
             <form action="{% url 'like_movie' movie.pk%}" method="POST">

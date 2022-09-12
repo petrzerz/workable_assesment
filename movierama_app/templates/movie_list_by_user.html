@@ -5,16 +5,14 @@
 Movies by:
 <h1>{{ object_list.first.user.username }}</h1>
 <small>
-{% for movie in object_list %}
-{{ movie.user.username }}
-        {{ movie.user.email }}
-        {{ movie.timestamp }}            <br/>
-<hr>
-<br/>
-{{movie.description}} <br/>
-            {% endfor %}
+    {% for movie in object_list %}
+    <strong> {{ movie.title }} </strong> <br/>
+    {{ movie.timestamp }} <br/>
+    Description: {{movie.description}} <br/>
+    <hr/>
+    {% endfor %}
     <small/>
-<br/><br/>
-<a href="{% url 'home' %}" class='btn btn-secondary'>Back</a>
+    <br/><br/>
+    <a href="{% url 'home' %}" class='btn btn-secondary'>Back</a>
 
-{% endblock %}
+    {% endblock %}

@@ -2,13 +2,22 @@
 
 {% block content %}
 
-<h1>Movie List</h1>
+Order by: <a href="{%url 'home' %}">timestamp</a>
+Order by: <a href="{%url 'home_likes' %}">likes</a>
+Order by: <a href="{%url 'home_hates' %}">hates</a>
+<hr/>
+<br/><br/>
+<h1>Movie List: </h1>
 
 <ul>
     {% for movie in object_list %}
+    <hr/>
     <li><a href=" {% url 'movie-detail' movie.pk %}">
         {{ movie.title }}</a> <br/>
-        Submitted by : {{ movie.user.username }},
+        Submitted by :
+        <a href=" {% url 'movie_list_by_user' movie.user.pk %}">
+            {{ movie.user.username }}
+        </a>,
         at: {{ movie.timestamp }} <br/>
         Description:<br/> {{ movie.description }} <br/>
         Likes: {{ movie.likes.all.count }} |
@@ -19,6 +28,7 @@
                 {% endif %}
         </small><br/>
     </li>
+    <hr/>
     {% endfor%}
 
 </ul>

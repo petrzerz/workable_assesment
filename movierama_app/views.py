@@ -12,20 +12,17 @@ class HomeView(ListView):
     template_name = 'home.html'
     ordering = ['-timestamp']
 
-    def get_queryset(self, **kwargs):
-        queryset = super().get_queryset(**kwargs)
-        timestamp = self.request.GET.get('order_by')
-        likes = self.request.GET.get('order_by')
-        hates = self.request.GET.get('order_by')
 
-        if timestamp is not None:
-            queryset = queryset.order_by('-timestamp')
-        # if likes is not None:
-        #     queryset = queryset.order_by('likes.all().count')
-        # if hates is not None:
-        #     queryset = queryset.order_by('likes.all().count')
+class HomeByLikesView(ListView):
+    model = Movie
+    template_name = 'home.html'
+    ordering = ['likes']
 
-        return queryset
+
+class HomeByHatesView(ListView):
+    model = Movie
+    template_name = 'home.html'
+    ordering = ['hates']
 
 
 class MovieDetailView(DetailView):
@@ -82,6 +79,7 @@ class DeleteMovieView(DeleteView):
 class MovieListByUserView(ListView):
     model = Movie
     template_name = 'movie_list_by_user.html'
+    ordering = ['-timestamp']
 
     def get_queryset(self, **kwargs):
         qs = super().get_queryset(**kwargs)
