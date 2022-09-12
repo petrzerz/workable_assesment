@@ -24,4 +24,4 @@ EXPOSE 8000
 COPY . /opt/app
 
 RUN chmod +x /opt/app/run.sh
-CMD ["/opt/app/run.sh"]
+CMD ["./run.sh"]
